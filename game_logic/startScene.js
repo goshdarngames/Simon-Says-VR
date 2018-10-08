@@ -45,6 +45,8 @@
             CreateGround("ground1",
                         { width : 6, height : 6, subdivisions : 2},
                         scene);
+        
+        babylonProject.VRHelper = scene.createDefaultVRExperience ();
 
         return scene;
     };
