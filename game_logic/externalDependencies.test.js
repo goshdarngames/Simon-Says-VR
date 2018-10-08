@@ -24,4 +24,9 @@ test ( 'window.babylonProject.BABYLON is defined', () =>
             expect ( window.babylonProject.BABYLON ).toBeDefined ();
         });
 
+test ( 'window.babylonProject.VRHelper is defined', () => 
+        {
+            expect ( window.babylonProject.VRHelper ).toBeDefined ();
+        });
+
 
