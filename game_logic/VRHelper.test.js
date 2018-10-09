@@ -35,4 +35,17 @@ describe ( "window.babylonProject.startVR", () =>
         expect ( scene.createDefaultVRExperience )
             .toHaveBeenCalledTimes ( 1 );    
     });
+
+    test ( "sets window.babylonProject.VRHelper to the return value of "+
+           "scene.createDefaultVRExperience" , () =>
+    {
+        let scene = get_mock_scene ();
+
+        scene.createDefaultVRExperience.mockReturnValue ( 10 );
+
+        window.babylonProject.startVR ( scene );
+
+        expect ( window.babylonProject.VRHelper ).toBe( 10 );
+    });
+
 });
