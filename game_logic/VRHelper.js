@@ -10,5 +10,10 @@
     //Referenc to the VRExperienceHelper
     babylonProject.VRHelper = null;
 
+    babylonProject.startVR = function ( scene )
+    {
+        
+    };
+
 } ( window.babylonProject = window.babylonProject || {} ));
 
