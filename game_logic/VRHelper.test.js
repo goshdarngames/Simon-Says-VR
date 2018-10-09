@@ -9,7 +9,11 @@ function get_mock_scene ()
     let Scene = jest.fn (
             function ()
             {
-                this.createDefaultVRExperience = jest.fn ();
+                this.createDefaultVRExperience = jest.fn (
+                function ()
+                {
+                    return { enableTeleportation : jest.fn() };
+                });
             });
 
     return new Scene;
@@ -52,6 +56,17 @@ describe ( "window.babylonProject.startVR", () =>
         window.babylonProject.startVR ( scene );
 
         expect ( window.babylonProject.VRHelper ).toBe( 10 );
+    });
+
+    test ( "calls enableTeleportation on window.babylonProject.VRHelper",
+            () =>
+    {
+        let scene = get_mock_scene();
+
+        window.babylonProject.startVR ( scene );
+
+        expect ( window.babylonProject.VRHelper.enableTeleportation )
+            .toHaveBeenCalledTimes ( 1 );
     });
 
 });
