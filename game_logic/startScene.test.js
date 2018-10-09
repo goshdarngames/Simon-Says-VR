@@ -12,11 +12,7 @@ function get_mock_babylon ()
 {
     babylon = jest.fn ();
 
-    babylon.Scene = jest.fn (
-            function()
-            {
-                this.createDefaultVRExperience = jest.fn();
-            });
+    babylon.Scene = jest.fn ();
 
     babylon.Color3 = jest.fn ();
 
@@ -118,15 +114,4 @@ describe ("window.babylonProject.startScene", () =>
         expect ( babylon.MeshBuilder.CreateGround )
             .toHaveBeenCalledTimes ( 1 );
     });
-
-    test ( "creates VRExperience", () =>
-    {
-        window.babylonProject.BABYLON = get_mock_babylon();
-    
-        var scene = window.babylonProject.startScene();
-
-        expect ( scene.createDefaultVRExperience )
-            .toHaveBeenCalledTimes ( 1 );
-    });
-
 });
