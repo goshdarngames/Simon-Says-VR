@@ -7,6 +7,9 @@
         // Now create a basic Babylon Scene object
         var scene = new BABYLON.Scene(babylonProject.engine);
 
+        // create the default environment
+        let environment = scene.createDefaultEnvironment ();
+
         // This creates and positions a free camera
         var camera = new BABYLON.FreeCamera(
                 "camera1",
