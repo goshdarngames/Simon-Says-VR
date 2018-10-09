@@ -12,7 +12,11 @@ function get_mock_babylon ()
 {
     babylon = jest.fn ();
 
-    babylon.Scene = jest.fn ();
+    babylon.Scene = jest.fn (
+            function ()
+            {
+                this.createDefaultEnvironment = jest.fn();
+            });
 
     babylon.Color3 = jest.fn ();
 
@@ -46,6 +50,16 @@ describe ("window.babylonProject.startScene", () =>
     test ( "is defined", () =>    
     {
         expect ( window.babylonProject.startScene ).toBeDefined ();
+    });
+
+    test ( "calls 'createDefaultEnvironment' on returned scene.", () =>
+    {
+        window.babylonProject.BABYLON = get_mock_babylon ();
+
+        let scene = window.babylonProject.startScene ();
+
+        expect ( scene.createDefaultEnvironment )
+            .toHaveBeenCalledTimes ( 1 );
     });
     
     test ( "is not null", () =>
