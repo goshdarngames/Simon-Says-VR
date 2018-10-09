@@ -30,6 +30,8 @@ describe ( "window.babylonProject.startVR", () =>
     {
         let scene = get_mock_scene ();
 
+        window.babylonProject.startVR ( scene );
+
         expect ( scene.createDefaultVRExperience )
             .toHaveBeenCalledTimes ( 1 );    
     });
