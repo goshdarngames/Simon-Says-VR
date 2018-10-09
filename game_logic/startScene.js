@@ -7,9 +7,6 @@
         // Now create a basic Babylon Scene object
         var scene = new BABYLON.Scene(babylonProject.engine);
 
-        // Change the scene background color to dark green.
-        scene.clearColor = new BABYLON.Color3(0, 0.3, 0);
-
         // This creates and positions a free camera
         var camera = new BABYLON.FreeCamera(
                 "camera1",
@@ -40,11 +37,6 @@
         // Move the sphere upward 1/2 its height
         sphere.position.y = 1;
      
-        // Let's try our built-in 'ground' shape.
-        var ground = BABYLON.MeshBuilder.
-            CreateGround("ground1",
-                        { width : 6, height : 6, subdivisions : 2},
-                        scene);
         
         return scene;
     };

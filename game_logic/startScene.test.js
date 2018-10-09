@@ -34,7 +34,6 @@ function get_mock_babylon ()
             {
                 return { position : { x : 0, y : 0, z : 0} };
             });
-    babylon.MeshBuilder.CreateGround = jest.fn (); 
 
     return babylon;
 }
@@ -56,19 +55,6 @@ describe ("window.babylonProject.startScene", () =>
         expect ( window.babylonProject.startScene() ).not.toBeNull ();
     });
     
-    test ( "has clearColor that is Color3", () =>
-    {
-        window.babylonProject.BABYLON = get_mock_babylon();
-    
-        var scene = window.babylonProject.startScene();
-        
-        var babylon = window.babylonProject.BABYLON;
-    
-        expect ( babylon.Color3 ).toHaveBeenCalledTimes ( 1 );
-        
-        expect ( scene.clearColor ).toBeInstanceOf ( babylon.Color3 );
-    });
-
     test ( "creates a free camera", () =>
     {
         window.babylonProject.BABYLON = get_mock_babylon();
@@ -103,15 +89,4 @@ describe ("window.babylonProject.startScene", () =>
             .toHaveBeenCalledTimes ( 1 );
     });
 
-    test ( "creates ground", () =>
-    {
-        window.babylonProject.BABYLON = get_mock_babylon();
-    
-        var scene = window.babylonProject.startScene();
-        
-        var babylon = window.babylonProject.BABYLON;
-
-        expect ( babylon.MeshBuilder.CreateGround )
-            .toHaveBeenCalledTimes ( 1 );
-    });
 });
