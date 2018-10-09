@@ -17,6 +17,8 @@
             new BABYLON.Engine(babylonProject.canvas, true);
 
         babylonProject.changeScene ( babylonProject.startScene );
+        
+        babylonProject.startVR ( activeScene );
 
         // Register a render loop to repeatedly render the scene
         babylonProject.engine.runRenderLoop(function ()
