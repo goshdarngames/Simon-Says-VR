@@ -60,6 +60,14 @@ describe ("window.babylonProject.startScene", () =>
 
         expect ( scene.createDefaultEnvironment )
             .toHaveBeenCalledTimes ( 1 );
+
+        expect ( scene.createDefaultEnvironment )
+            .toHaveBeenCalledWith ( 
+                    {
+                        enableGroundShadow : true,
+                        groundYBias        : 1
+                    });
+
     });
     
     test ( "is not null", () =>
