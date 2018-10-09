@@ -8,7 +8,11 @@
         var scene = new BABYLON.Scene(babylonProject.engine);
 
         // create the default environment
-        let environment = scene.createDefaultEnvironment ();
+        let environment = scene.createDefaultEnvironment (
+                {
+                    enableGroundShadow : true,
+                    groundYBias : 1
+                });
 
         // This creates and positions a free camera
         var camera = new BABYLON.FreeCamera(
