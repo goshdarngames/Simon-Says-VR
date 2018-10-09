@@ -31,9 +31,15 @@ describe ( "window.babylonProject.startVR", () =>
         let scene = get_mock_scene ();
 
         window.babylonProject.startVR ( scene );
-
+ 
         expect ( scene.createDefaultVRExperience )
             .toHaveBeenCalledTimes ( 1 );    
+
+        expect ( scene.createDefaultVRExperience )
+            .toHaveBeenCalledWith ( 
+                    {
+                        createDeviceOrientationCamera : false
+                    });    
     });
 
     test ( "sets window.babylonProject.VRHelper to the return value of "+

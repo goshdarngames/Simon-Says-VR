@@ -12,7 +12,11 @@
 
     babylonProject.startVR = function ( scene )
     {
-        babylonProject.VRHelper = scene.createDefaultVRExperience ();        
+        babylonProject.VRHelper = 
+            scene.createDefaultVRExperience (
+                    {
+                        createDeviceOrientationCamera : false
+                    });        
     };
 
 } ( window.babylonProject = window.babylonProject || {} ));
