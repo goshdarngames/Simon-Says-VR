@@ -20,8 +20,5 @@
     //reference to the Babylon 3D engine
     babylonProject.engine = null;
 
-    //Referenc to the VRExperienceHelper
-    babylonProject.VRHelper = null;
-
 } ( window.babylonProject = window.babylonProject || {} ));
 
