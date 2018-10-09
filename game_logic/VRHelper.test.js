@@ -12,7 +12,13 @@ function get_mock_scene ()
                 this.createDefaultVRExperience = jest.fn (
                 function ()
                 {
-                    return { enableTeleportation : jest.fn() };
+                    let VRHelper = {};
+                    
+                    VRHelper.enableTeleportation = jest.fn();
+                    
+                    VRHelper.enableInteractions = jest.fn();
+
+                    return VRHelper; 
                 });
             });
 
@@ -45,18 +51,19 @@ describe ( "window.babylonProject.startVR", () =>
                         createDeviceOrientationCamera : false
                     });    
     });
-
-    test ( "sets window.babylonProject.VRHelper to the return value of "+
-           "scene.createDefaultVRExperience" , () =>
+    
+    test ( "calls enableInteractions on window.babylonProject.VRHelper",
+            () =>
     {
-        let scene = get_mock_scene ();
-
-        scene.createDefaultVRExperience.mockReturnValue ( 10 );
+        let scene = get_mock_scene();
 
         window.babylonProject.startVR ( scene );
 
-        expect ( window.babylonProject.VRHelper ).toBe( 10 );
+        expect ( window.babylonProject.VRHelper.enableInteractions )
+            .toHaveBeenCalledTimes ( 1 );
+
     });
+
 
     test ( "calls enableTeleportation on window.babylonProject.VRHelper",
             () =>
@@ -67,6 +74,13 @@ describe ( "window.babylonProject.startVR", () =>
 
         expect ( window.babylonProject.VRHelper.enableTeleportation )
             .toHaveBeenCalledTimes ( 1 );
+
+        expect ( window.babylonProject.VRHelper.enableTeleportation )
+            .toHaveBeenCalledWith (
+                    {
+                        floorMeshName : "ground"
+                    });
+
     });
 
 });
