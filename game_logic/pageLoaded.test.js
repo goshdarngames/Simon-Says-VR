@@ -25,6 +25,12 @@ function get_mock_babylon ()
 
     return new MockBabylon ();
 }
+
+beforeEach ( ()=>
+{
+    window.babylonProject.changeScene = jest.fn();
+    window.babylonProject.startScene = jest.fn();
+});
  
 /****************************************************************************
  * TESTS
@@ -103,4 +109,19 @@ describe ( "window.babylonProject.pageLoaded" , () =>
         expect ( mock_babylon.Engine )
             .toHaveBeenCalledWith ( canvas_test_value, true );
     });
+
+    test ( "calls window.babylonProject.changeScene",
+            () =>
+    {
+        let mock_doc = get_mock_document ();
+
+        let mock_babylon = get_mock_babylon ();
+
+
+        window.babylonProject.pageLoaded ( mock_doc, mock_babylon );
+
+        expect ( window.babylonProject.changeScene )
+            .toHaveBeenCalledTimes ( 1 );
+    });
+
 });

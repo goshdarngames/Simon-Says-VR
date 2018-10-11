@@ -10,5 +10,7 @@
         babylonProject.engine = 
             new babylonProject.BABYLON.Engine (
                     babylonProject.canvas, true );
+
+        babylonProject.changeScene ();
     };
 } ( window.babylonProject = window.babylonProject || {} ));
