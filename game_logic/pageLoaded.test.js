@@ -62,4 +62,20 @@ describe ( "window.babylonProject.pageLoaded" , () =>
 
         expect ( window.babylonProject.canvas ).toBe ( 7 );
     });
+
+    test ( "stores babylonRef parameter in window.babylonProject.BABYLON",
+            () =>
+    {
+        let mock_doc = get_mock_document ();
+
+        let mock_babylon = get_mock_babylon ();
+
+
+        window.babylonProject.pageLoaded ( mock_doc, mock_babylon );
+
+        expect ( window.babylonProject.BABYLON == mock_babylon )
+            .toBeTruthy ( );
+    });
+
+
 });
