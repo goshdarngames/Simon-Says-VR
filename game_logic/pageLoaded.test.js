@@ -89,10 +89,18 @@ describe ( "window.babylonProject.pageLoaded" , () =>
 
         let mock_babylon = get_mock_babylon ();
 
+        let canvas_test_value = 9;
+        mock_doc.querySelector.mockReturnValue ( canvas_test_value );
 
         window.babylonProject.pageLoaded ( mock_doc, mock_babylon );
 
         expect ( window.babylonProject.engine )
             .toBeInstanceOf ( mock_babylon.Engine );
+
+        expect ( mock_babylon.Engine )
+            .toHaveBeenCalledTimes ( 1 );
+
+        expect ( mock_babylon.Engine )
+            .toHaveBeenCalledWith ( canvas_test_value, true );
     });
 });

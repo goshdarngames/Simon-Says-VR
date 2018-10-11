@@ -8,6 +8,7 @@
         babylonProject.BABYLON = babylonRef;
 
         babylonProject.engine = 
-            new babylonProject.BABYLON.Engine ();
+            new babylonProject.BABYLON.Engine (
+                    babylonProject.canvas, true );
     };
 } ( window.babylonProject = window.babylonProject || {} ));
