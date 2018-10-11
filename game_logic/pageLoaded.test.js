@@ -17,7 +17,11 @@ function get_mock_document ()
 
 function get_mock_babylon ()
 {
-    let MockBabylon = jest.fn ();
+    let MockBabylon = jest.fn (
+            function ()
+            {
+                this.Engine = jest.fn ();
+            });
 
     return new MockBabylon ();
 }
@@ -77,5 +81,18 @@ describe ( "window.babylonProject.pageLoaded" , () =>
             .toBeTruthy ( );
     });
 
+    test ( "constructs instance of BABYLON.Engine and stores it in "+
+           "babylonProject.Engine",
+            () =>
+    {
+        let mock_doc = get_mock_document ();
 
+        let mock_babylon = get_mock_babylon ();
+
+
+        window.babylonProject.pageLoaded ( mock_doc, mock_babylon );
+
+        expect ( window.babylonProject.engine )
+            .toBeInstanceOf ( mock_babylon.Engine );
+    });
 });
