@@ -30,6 +30,8 @@ beforeEach ( ()=>
 {
     window.babylonProject.changeScene = jest.fn();
     window.babylonProject.startScene = jest.fn();
+    window.babylonProject.startVR =  jest.fn();
+    window.babylonProject.activeScene =  jest.fn();
 });
  
 /****************************************************************************
@@ -125,6 +127,23 @@ describe ( "window.babylonProject.pageLoaded" , () =>
 
         expect ( window.babylonProject.changeScene )
             .toHaveBeenCalledWith ( window.babylonProject.startScene );
+    });
+
+    test ( "calls window.babylonProject.startVR",
+            () =>
+    {
+        let mock_doc = get_mock_document ();
+
+        let mock_babylon = get_mock_babylon ();
+
+
+        window.babylonProject.pageLoaded ( mock_doc, mock_babylon );
+
+        expect ( window.babylonProject.startVR )
+            .toHaveBeenCalledTimes ( 1 );
+
+        expect ( window.babylonProject.startVR )
+            .toHaveBeenCalledWith ( window.babylonProject.activeScene );
     });
 
 });
