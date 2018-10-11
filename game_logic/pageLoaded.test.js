@@ -14,6 +14,13 @@ function get_mock_document ()
     
     return new MockDoc(); 
 }
+
+function get_mock_babylon ()
+{
+    let MockBabylon = jest.fn ();
+
+    return new MockBabylon ();
+}
  
 /****************************************************************************
  * TESTS
@@ -30,7 +37,9 @@ describe ( "window.babylonProject.pageLoaded" , () =>
     {
         let mock_doc = get_mock_document ();
 
-        window.babylonProject.pageLoaded ( mock_doc );
+        let mock_babylon = get_mock_babylon ();
+
+        window.babylonProject.pageLoaded ( mock_doc, mock_babylon );
 
         expect ( mock_doc.querySelector ).toHaveBeenCalledTimes ( 1 );
 
@@ -44,10 +53,12 @@ describe ( "window.babylonProject.pageLoaded" , () =>
     {
         let mock_doc = get_mock_document ();
 
+        let mock_babylon = get_mock_babylon ();
+
         //set an arbitrary return value to test for
         mock_doc.querySelector.mockReturnValue ( 7 );
 
-        window.babylonProject.pageLoaded ( mock_doc );
+        window.babylonProject.pageLoaded ( mock_doc, mock_babylon );
 
         expect ( window.babylonProject.canvas ).toBe ( 7 );
     });
