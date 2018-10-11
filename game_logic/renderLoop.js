@@ -10,6 +10,7 @@
 
     babylonProject.renderLoop = function ()
     {
+        babylonProject.activeScene.render();
     };
 
 } ( window.babylonProject = window.babylonProject || {} ));
