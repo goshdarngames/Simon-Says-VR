@@ -122,6 +122,9 @@ describe ( "window.babylonProject.pageLoaded" , () =>
 
         expect ( window.babylonProject.changeScene )
             .toHaveBeenCalledTimes ( 1 );
+
+        expect ( window.babylonProject.changeScene )
+            .toHaveBeenCalledWith ( window.babylonProject.startScene );
     });
 
 });

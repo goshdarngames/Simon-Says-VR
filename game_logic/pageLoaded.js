@@ -11,6 +11,6 @@
             new babylonProject.BABYLON.Engine (
                     babylonProject.canvas, true );
 
-        babylonProject.changeScene ();
+        babylonProject.changeScene ( babylonProject.startScene );
     };
 } ( window.babylonProject = window.babylonProject || {} ));
