@@ -20,7 +20,11 @@ function get_mock_babylon ()
     let MockBabylon = jest.fn (
             function ()
             {
-                this.Engine = jest.fn ();
+                this.Engine = jest.fn (
+                        function ()
+                        {
+                            this.runRenderLoop = jest.fn()
+                        });
             });
 
     return new MockBabylon ();
@@ -29,9 +33,14 @@ function get_mock_babylon ()
 beforeEach ( ()=>
 {
     window.babylonProject.changeScene = jest.fn();
+
     window.babylonProject.startScene = jest.fn();
+
     window.babylonProject.startVR =  jest.fn();
-    window.babylonProject.activeScene =  jest.fn();
+
+    window.babylonProject.activeScene = jest.fn();
+
+    window.babylonProject.renderLoop = jest.fn();
 });
  
 /****************************************************************************
@@ -90,7 +99,7 @@ describe ( "window.babylonProject.pageLoaded" , () =>
     });
 
     test ( "constructs instance of BABYLON.Engine and stores it in "+
-           "babylonProject.Engine",
+           "window.babylonProject.engine",
             () =>
     {
         let mock_doc = get_mock_document ();
@@ -144,6 +153,24 @@ describe ( "window.babylonProject.pageLoaded" , () =>
 
         expect ( window.babylonProject.startVR )
             .toHaveBeenCalledWith ( window.babylonProject.activeScene );
+    });
+
+    test ( "calls window.babylonProject.runRenderLoop with "+
+           "window.babylonProject.renderLoop",
+            () =>
+    {
+        let mock_doc = get_mock_document ();
+
+        let mock_babylon = get_mock_babylon ();
+
+
+        window.babylonProject.pageLoaded ( mock_doc, mock_babylon );
+
+        expect ( window.babylonProject.engine.runRenderLoop )
+            .toHaveBeenCalledTimes ( 1 );
+
+        expect ( window.babylonProject.engine.runRenderLoop )
+            .toHaveBeenCalledWith ( window.babylonProject.renderLoop );
     });
 
 });
