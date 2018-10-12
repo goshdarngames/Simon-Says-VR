@@ -11,6 +11,8 @@
 
         scene.createDefaultEnvironment ();
         
+        scene.createDefaultVRExperience ();
+
         return scene;
     };
 } ( window.babylonProject = window.babylonProject || {} ));

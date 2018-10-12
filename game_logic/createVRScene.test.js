@@ -13,6 +13,7 @@ beforeEach ( () =>
                         function ()
                         {
                             this.createDefaultEnvironment = jest.fn ();
+                            this.createDefaultVRExperience = jest.fn ();
                         });
             });
 
@@ -55,4 +56,13 @@ describe ( "window.babylonProject.createVRScene", () =>
             .toBeCalledTimes ( 1 );
     });
   
-});
+    test ( "calls scene.createDefaultVRExperience", () =>
+    {
+        let scene = window.babylonProject.createVRScene ();
+
+        expect ( scene.createDefaultVRExperience )
+            .toBeCalledTimes ( 1 );
+    });
+  
+
+})
