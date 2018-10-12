@@ -9,7 +9,11 @@ beforeEach ( () =>
     let MockBabylon = jest.fn (
             function ()
             {
-                this.Scene = jest.fn ();
+                this.Scene = jest.fn (
+                        function ()
+                        {
+                            this.createDefaultEnvironment = jest.fn ();
+                        });
             });
 
     window.babylonProject.BABYLON = new MockBabylon ();
@@ -43,5 +47,12 @@ describe ( "window.babylonProject.createVRScene", () =>
             .toBeCalledWith ( window.babylonProject.engine );
     });
 
-       
+    test ( "calls scene.createDefaultEnvironment", () =>
+    {
+        let scene = window.babylonProject.createVRScene ();
+
+        expect ( scene.createDefaultEnvironment )
+            .toBeCalledTimes ( 1 );
+    });
+  
 });

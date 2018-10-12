@@ -8,6 +8,8 @@
     {
         let scene = new babylonProject.BABYLON.Scene ( 
                 babylonProject.engine );
+
+        scene.createDefaultEnvironment ();
         
         return scene;
     };
