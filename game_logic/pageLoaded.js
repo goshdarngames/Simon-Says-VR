@@ -11,9 +11,7 @@
             new babylonProject.BABYLON.Engine (
                     babylonProject.canvas, true );
 
-        babylonProject.changeScene ( babylonProject.startScene );
-
-        babylonProject.startVR ( babylonProject.activeScene );
+        babylonProject.changeScene ( babylonProject.createVRScene );
 
         babylonProject.engine.runRenderLoop ( babylonProject.renderLoop );
     };
