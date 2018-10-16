@@ -8,7 +8,7 @@
 ( function ( babylonProject, undefined )
 {
 
-    babylonProject.renderLoop = function ()
+    babylonProject.gameLoop = function ()
     {
         babylonProject.activeScene.render();
     };

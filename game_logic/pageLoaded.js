@@ -12,7 +12,5 @@
                     babylonProject.canvas, true );
 
         babylonProject.changeScene ( babylonProject.createVRScene );
-
-        babylonProject.engine.runRenderLoop ( babylonProject.renderLoop );
     };
 } ( window.babylonProject = window.babylonProject || {} ));

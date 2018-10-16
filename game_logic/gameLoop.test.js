@@ -1,4 +1,4 @@
-const renderLoop = require ( "./renderLoop" );
+const renderLoop = require ( "./gameLoop" );
 
 /****************************************************************************
  * MOCK DATA
@@ -15,16 +15,16 @@ beforeEach ( () =>
  * TESTS
  ***************************************************************************/
 
-describe ( "window.babylonProject.renderLoop", () =>
+describe ( "window.babylonProject.gameLoop", () =>
 {
     test ( "is defined", () =>
     {
-        expect ( window.babylonProject.renderLoop ).toBeDefined ();
+        expect ( window.babylonProject.gameLoop ).toBeDefined ();
     });
 
     test ( "calls window.babylonProject.activeScene.render", () =>
     {
-        window.babylonProject.renderLoop ();
+        window.babylonProject.gameLoop ();
 
         expect ( window.babylonProject.activeScene.render )
             .toHaveBeenCalledTimes ( 1 );
