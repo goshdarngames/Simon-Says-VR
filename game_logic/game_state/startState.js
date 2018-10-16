@@ -1,7 +1,7 @@
-( function ( babylonProject, systemState, undefined )
+( function ( babylonProject, gameState, undefined )
 {
 
-    systemState.StartState = function ()
+    gameState.StartState = function ()
     {
         this.update = function ()
         {
@@ -11,5 +11,5 @@
 
 } ( window.babylonProject = window.babylonProject || {},
 
-    window.babylonProject.systemState = 
-        window.babylonProject.systemState || {} ));
+    window.babylonProject.gameState =  
+        window.babylonProject.gameState || {} ));

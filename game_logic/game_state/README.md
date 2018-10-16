@@ -6,6 +6,11 @@ during the course of the game.  Each state is represented by an Object.
 
 I.e. There is a state object for the main menu, gameplay and game over.
 
+The pageLoaded function assumes that the first state to load will be
+located in:
+
+    window.babylonProject.gameStates.startState
+
 States have an update() method which should perform a logical step.
 
 The update method should return the next state.
