@@ -13,6 +13,6 @@
 
         babylonProject.changeScene ( babylonProject.createVRScene );
 
-        babylonProject.engine.runRenderLoop ( babylonProject.renderLoop );
+        babylonProject.engine.runRenderLoop ( babylonProject.gameLoop );
     };
 } ( window.babylonProject = window.babylonProject || {} ));

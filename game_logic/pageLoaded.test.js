@@ -38,7 +38,7 @@ beforeEach ( ()=>
 
     window.babylonProject.activeScene = jest.fn();
 
-    window.babylonProject.renderLoop = jest.fn();
+    window.babylonProject.gameLoop = jest.fn();
 });
  
 /****************************************************************************
@@ -137,8 +137,8 @@ describe ( "window.babylonProject.pageLoaded" , () =>
     });
 
 
-    test ( "calls window.babylonProject.runRenderLoop with "+
-           "window.babylonProject.renderLoop",
+    test ( "calls window.babylonProject.engine.runRenderLoop with "+
+           "window.babylonProject.gameLoop",
             () =>
     {
         let mock_doc = get_mock_document ();
@@ -152,7 +152,7 @@ describe ( "window.babylonProject.pageLoaded" , () =>
             .toHaveBeenCalledTimes ( 1 );
 
         expect ( window.babylonProject.engine.runRenderLoop )
-            .toHaveBeenCalledWith ( window.babylonProject.renderLoop );
+            .toHaveBeenCalledWith ( window.babylonProject.gameLoop );
     });
 
 });
