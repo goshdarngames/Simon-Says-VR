@@ -1,8 +1,10 @@
-System State
-============
+Game State
+==========
 
 The system uses a finite state machine to encode how it should behave
-during the course of the game.
+during the course of the game.  Each state is represented by an Object.
+
+I.e. There is a state object for the main menu, gameplay and game over.
 
 States have an update() method which should perform a logical step.
 
