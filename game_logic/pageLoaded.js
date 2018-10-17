@@ -13,6 +13,9 @@
 
         let scene =  babylonProject.createVRScene ();
 
+        let startState = new window.babylonProject
+            .gameState.StartState( scene );
+
         babylonProject.engine.runRenderLoop ( babylonProject.gameLoop );
     };
 } ( window.babylonProject = window.babylonProject || {} ));

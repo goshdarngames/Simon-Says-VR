@@ -32,13 +32,13 @@ function get_mock_babylon ()
 
 beforeEach ( ()=>
 {
-    window.babylonProject.changeScene = jest.fn();
+    window.babylonProject.gameState = jest.fn ();
 
-    window.babylonProject.createVRScene =  jest.fn();
+    window.babylonProject.gameState.StartState = jest.fn ();
 
-    window.babylonProject.activeScene = jest.fn();
+    window.babylonProject.createVRScene =  jest.fn ();
 
-    window.babylonProject.gameLoop = jest.fn();
+    window.babylonProject.gameLoop = jest.fn ();
 });
  
 /****************************************************************************
@@ -118,6 +118,28 @@ describe ( "window.babylonProject.pageLoaded" , () =>
         expect ( mock_babylon.Engine )
             .toHaveBeenCalledWith ( canvas_test_value, true );
     });
+
+    test ( "creates an instance of StartScene", () =>
+    {
+        let mock_doc = get_mock_document ();
+
+        let mock_babylon = get_mock_babylon ();
+
+        //The start state should have this scene as its parameter
+        window.babylonProject.createVRScene
+            .mockReturnValue ( 10 );
+
+        window.babylonProject.pageLoaded ( mock_doc, mock_babylon );
+
+        expect ( window.babylonProject.gameState.StartState )
+            .toHaveBeenCalledTimes ( 1 );
+
+
+        expect ( window.babylonProject.gameState.StartState )
+            .toHaveBeenCalledWith ( 10 );
+    });
+
+    
 
     test ( "calls createVRScene",  () =>
     {
