@@ -15,6 +15,11 @@ beforeEach ( () =>
  * TESTS
  ***************************************************************************/
 
+test ( "window.babylonProject.gameState is defined", () =>
+{
+    expect ( window.babylonProject.gameState ).toBeDefined ();
+});
+
 describe ( "window.babylonProject.gameLoop", () =>
 {
     test ( "is defined", () =>

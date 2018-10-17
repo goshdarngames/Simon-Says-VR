@@ -12,6 +12,12 @@
 
 ( function ( babylonProject, undefined )
 {
+    /**
+     * The current game state that will be updated during game loop cycles.
+     *
+     * The initial value is set i pageLoaded.js when the game starts.
+     */
+    babylonProject.gameState = null;
 
     babylonProject.gameLoop = function ()
     {
