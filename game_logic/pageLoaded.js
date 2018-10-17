@@ -16,6 +16,8 @@
         let startState = new window.babylonProject
             .gameState.StartState( scene );
 
+        babylonProject.currentGameState = startState;
+
         babylonProject.engine.runRenderLoop ( babylonProject.gameLoop );
     };
 } ( window.babylonProject = window.babylonProject || {} ));

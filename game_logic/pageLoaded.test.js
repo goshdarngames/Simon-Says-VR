@@ -139,6 +139,19 @@ describe ( "window.babylonProject.pageLoaded" , () =>
             .toHaveBeenCalledWith ( 10 );
     });
 
+    test ( "assigns window.babylonProject.gameState", () =>
+    {
+        let mock_doc = get_mock_document ();
+
+        let mock_babylon = get_mock_babylon ();
+
+
+        window.babylonProject.pageLoaded ( mock_doc, mock_babylon );
+
+        expect ( window.babylonProject.currentGameState )
+            .toBeInstanceOf ( window.babylonProject.gameState.StartState );
+    });
+
     
 
     test ( "calls createVRScene",  () =>
