@@ -119,24 +119,6 @@ describe ( "window.babylonProject.pageLoaded" , () =>
             .toHaveBeenCalledWith ( canvas_test_value, true );
     });
 
-    test ( "calls window.babylonProject.changeScene",
-            () =>
-    {
-        let mock_doc = get_mock_document ();
-
-        let mock_babylon = get_mock_babylon ();
-
-
-        window.babylonProject.pageLoaded ( mock_doc, mock_babylon );
-
-        expect ( window.babylonProject.changeScene )
-            .toHaveBeenCalledTimes ( 1 );
-
-        expect ( window.babylonProject.changeScene )
-            .toHaveBeenCalledWith ( window.babylonProject.createVRScene );
-    });
-
-
     test ( "calls window.babylonProject.engine.runRenderLoop with "+
            "window.babylonProject.gameLoop",
             () =>
