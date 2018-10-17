@@ -25,9 +25,9 @@ beforeEach ( () =>
  * TESTS
  ***************************************************************************/
 
-test ( "window.babylonProject.gameState is defined", () =>
+test ( "window.babylonProject.currentGameState is defined", () =>
 {
-    expect ( window.babylonProject.gameState ).toBeDefined ();
+    expect ( window.babylonProject.currentGameState ).toBeDefined ();
 });
 
 describe ( "window.babylonProject.gameLoop", () =>
@@ -37,27 +37,27 @@ describe ( "window.babylonProject.gameLoop", () =>
         expect ( window.babylonProject.gameLoop ).toBeDefined ();
     });
 
-    test ( "calls update() on window.babylonProject.gameState", () =>
+    test ( "calls update() on window.babylonProject.currentGameState", () =>
     {
-        window.babylonProject.gameState = get_mock_game_state ();
+        window.babylonProject.currentGameState = get_mock_game_state ();
         
         window.babylonProject.gameLoop ();
 
-        expect ( window.babylonProject.gameState.update )
+        expect ( window.babylonProject.currentGameState.update )
             .toHaveBeenCalledTimes ( 1 );
     });
 
-    test ( "stores result of window.babylonProject.gameState.update() in "+
-           "window.babylonProject.gameState", () =>
+    test ( "stores result of babylonProject.currentGameState.update() in "+
+           "window.babylonProject.currentGameState", () =>
     {
-        window.babylonProject.gameState = get_mock_game_state ();
+        window.babylonProject.currentGameState = get_mock_game_state ();
 
-        window.babylonProject.gameState.update
+        window.babylonProject.currentGameState.update
            .mockReturnValue(10); 
          
         window.babylonProject.gameLoop ();
 
-        expect ( window.babylonProject.gameState ).toBe( 10 );
+        expect ( window.babylonProject.currentGameState ).toBe( 10 );
     });
 
 

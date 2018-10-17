@@ -17,13 +17,13 @@
      *
      * The initial value is set i pageLoaded.js when the game starts.
      */
-    babylonProject.gameState = null;
+    babylonProject.currentGameState = null;
 
     babylonProject.gameLoop = function ()
     {
         //update state and store return value as current state
-        window.babylonProject.gameState = 
-            babylonProject.gameState.update (); 
+        babylonProject.currentGameState = 
+            babylonProject.currentGameState.update (); 
     };
 
 } ( window.babylonProject = window.babylonProject || {} ));
