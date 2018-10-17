@@ -11,7 +11,7 @@
             new babylonProject.BABYLON.Engine (
                     babylonProject.canvas, true );
 
-        babylonProject.changeScene ( babylonProject.createVRScene );
+        let scene =  babylonProject.createVRScene ();
 
         babylonProject.engine.runRenderLoop ( babylonProject.gameLoop );
     };
