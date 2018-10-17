@@ -3,12 +3,22 @@ const renderLoop = require ( "./gameLoop" );
 /****************************************************************************
  * MOCK DATA
  ***************************************************************************/
+function get_mock_game_state ()
+{
+    let MockState = jest.fn (
+            function ()
+            {
+                this.update = jest.fn(
+                        function ()
+                        {
+                            return this;
+                        });
+            });
 
+    return new MockState ();
+}
 beforeEach ( () =>
 {
-    window.babylonProject.activeScene = jest.fn ();
-
-    window.babylonProject.activeScene.render = jest.fn ();
 });
 
 /****************************************************************************
@@ -27,11 +37,28 @@ describe ( "window.babylonProject.gameLoop", () =>
         expect ( window.babylonProject.gameLoop ).toBeDefined ();
     });
 
-    test ( "calls window.babylonProject.activeScene.render", () =>
+    test ( "calls update() on window.babylonProject.gameState", () =>
     {
+        window.babylonProject.gameState = get_mock_game_state ();
+        
         window.babylonProject.gameLoop ();
 
-        expect ( window.babylonProject.activeScene.render )
+        expect ( window.babylonProject.gameState.update )
             .toHaveBeenCalledTimes ( 1 );
     });
+
+    test ( "stores result of window.babylonProject.gameState.update() in "+
+           "window.babylonProject.gameState", () =>
+    {
+        window.babylonProject.gameState = get_mock_game_state ();
+
+        window.babylonProject.gameState.update
+           .mockReturnValue(10); 
+         
+        window.babylonProject.gameLoop ();
+
+        expect ( window.babylonProject.gameState ).toBe( 10 );
+    });
+
+
 });
