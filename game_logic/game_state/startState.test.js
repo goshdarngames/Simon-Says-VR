@@ -6,7 +6,11 @@ const startState = require ( "./startState" );
 
 function get_mock_scene ()
 {
-    let MockScene = jest.fn();
+    let MockScene = jest.fn (
+            function ()
+            {
+                this.render = jest.fn();
+            });
 
     return new MockScene();
 }
@@ -60,13 +64,24 @@ describe ( "window.babylonProject.gameState.startState", () =>
         let startState = 
             new window.babylonProject.gameState.StartState ( mock_scene );
 
-
-
         expect ( startState.update () )
             .toBeInstanceOf (
                  window.babylonProject.gameState.StartState  );
 
     });
 
+    test ( "startscene update calls render() on startscene.babylonScene",
+            () =>
+    {
+        let mock_scene = get_mock_scene();
+
+        let startState = 
+            new window.babylonProject.gameState.StartState ( mock_scene );
+        
+        startState.update ();
+        
+        expect ( startState.babylonScene.render )
+            .toHaveBeenCalledTimes ( 1 );
+    });
 
 });

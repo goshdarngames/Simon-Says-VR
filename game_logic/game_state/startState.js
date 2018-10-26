@@ -12,6 +12,8 @@
 
         this.update = function ()
         {
+            this.babylonScene.render ();
+
             return this;
         };
     }; 
