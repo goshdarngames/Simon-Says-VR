@@ -1,12 +1,14 @@
 ( function ( babylonProject, gameState, undefined )
 {
 
-    gameState.StartState = function ( scene )
+    gameState.StartState = function ( babylonScene )
     {
-        if ( scene == undefined )
+        if ( babylonScene == undefined )
         {
             throw new Error ( "Scene argument is undefined" );
         }
+
+        this.babylonScene = babylonScene;
 
         this.update = function ()
         {

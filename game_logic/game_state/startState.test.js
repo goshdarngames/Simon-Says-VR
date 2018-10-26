@@ -42,6 +42,17 @@ describe ( "window.babylonProject.gameState.startState", () =>
             .toThrow ();
     });
 
+    test ( "startState stores babylonScene passed in constructor", () =>
+    {
+        let babylonScene = jest.fn ();
+
+        let startState = 
+            new window.babylonProject.gameState.StartState ( babylonScene );
+
+        expect ( startState.babylonScene ).toBe ( babylonScene );
+    });
+
+
     test ( "instance.update() returns instance of StartState", () =>
     {
         let mock_scene = get_mock_scene();
