@@ -4,10 +4,9 @@
 
 ( function ( babylonProject, undefined )
 {
-    babylonProject.createVRScene = function ()
+    babylonProject.createVRScene = function ( babylon, engine )
     {
-        let scene = new babylonProject.BABYLON.Scene ( 
-                babylonProject.engine );
+        let scene = new babylon.Scene ( engine );
 
         scene.createDefaultEnvironment ();
         
