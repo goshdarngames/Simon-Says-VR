@@ -7,7 +7,11 @@ const pageLoaded = require ( "./pageLoaded" );
 MockDoc = jest.fn ( 
     function ()
     {
-        this.querySelector = jest.fn();
+        this.querySelector = jest.fn( 
+                function()
+                {
+                    return  jest.fn();
+                });
     });
     
 MockBabylon = jest.fn (
@@ -83,6 +87,42 @@ describe ( "window.babylonProject.pageLoaded" , () =>
         //restore old function
         window.babylonProject.createBabylonEngine = createBabylonEngineFunc; 
     });
+
+    test ( "passes canvas from documentRef.querySelector to "+
+           "window.babylonProject.createBabylonEngine",
+            () =>
+    {
+        let mock_doc = new MockDoc ();
+        
+        //capture return value of query selector to compare later
+        let canvas = mock_doc.querySelector ("#canvas");
+
+        //set query selector to return same value again
+        mock_doc.querySelector.mockReturnValueOnce ( canvas );
+
+        let mock_babylon = new MockBabylon ();
+        
+        //A reference to the existing function is stored so that it can
+        //be mocked without changing its functionaliy
+        // - This allows jest to inspect the parameters it was called with
+        let createBabylonEngineFunc = 
+            window.babylonProject.createBabylonEngine;
+      
+        //create mocked function using existing functionality 
+        window.babylonProject.createBabylonEngine = 
+            jest.fn ( createBabylonEngineFunc );
+
+        window.babylonProject.pageLoaded ( mock_doc, mock_babylon );
+    
+        //check that the engine creation function was called with the
+        //canvas captured earlier
+        expect ( window.babylonProject.createBabylonEngine )
+            .toHaveBeenCalledWith ( mock_babylon, canvas );
+        
+        //restore old function
+        window.babylonProject.createBabylonEngine = createBabylonEngineFunc; 
+    });
+
 
     test ( "creates an instance of StartScene", () =>
     {
@@ -245,5 +285,22 @@ describe ( "window.babylonProject.createBabylonEngineInstance", () =>
         expect ( mock_babylon.Engine )
             .toHaveBeenCalledWith ( mock_canvas, true );
     });
+
+    test ( "throws an error is canvas is undefined", () =>
+    {
+        let mock_babylon = new MockBabylon ();
+        
+        let mock_canvas = undefined;
+        
+        expect ( () => 
+                {
+
+                    window.babylonProject.createBabylonEngine ( 
+                        mock_babylon,
+                        mock_canvas   );
+                }).toThrow ();
+
+    });
+
 
 });
