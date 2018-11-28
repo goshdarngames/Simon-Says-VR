@@ -10,7 +10,7 @@
  * scope of tests.
  ***************************************************************************/
 
-(function( babylonProject, startScene, $,  undefined )
+(function( babylonProject, $,  undefined )
 {
     //Called when all HTML/DOM objects have been loaded.
     $(document).ready(function() 
@@ -19,14 +19,17 @@
     });
 
     //Dynamically resizes the canvas as the browser window changes.
-    $(window).on("resize load", function()
-    {
-        if ( babylonProject.engine )
-        {
-            babylonProject.engine.resize();
-        }
-    });
+    // The babylon game engine is no longer available as a global var
+    // if the resize function is needed in future it will have to be 
+    // rewritten so that the engine instance is passed to it from the
+    // pageloaded.js script
+//    $(window).on("resize load", function()
+//    {
+//        if ( babylonProject.engine )
+//        {
+//            babylonProject.engine.resize();
+//        }
+//    });
 
 } ( window.babylonProject = window.babylonProject || {},
-    window.startScene = window.startScene || {},
     jQuery));
