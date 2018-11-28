@@ -45,7 +45,7 @@ describe ( "window.babylonProject.createVRScene", () =>
         expect ( returnValue ).toBeInstanceOf ( mockBabylon.Scene );
     });
 
-    test ( "passed window.babylonProject.engine to Scene constructor", () =>
+    test ( "passed engine to Scene constructor", () =>
     {
         mockBabylon = new MockBabylon ();
         mockEngine = new MockEngine ();
