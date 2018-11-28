@@ -30,7 +30,8 @@
                     canvas );
 
         let scene =  babylonProject.createVRScene (
-                babylonRef, engine );
+                babylonRef,
+                 engine );
 
         let startState = new window.babylonProject
             .gameState.StartState( scene );
