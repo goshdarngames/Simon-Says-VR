@@ -27,11 +27,7 @@ beforeEach ( ()=>
 
     window.babylonProject.gameState.StartState = jest.fn ();
 
-    window.babylonProject.createVRScene = jest.fn ( 
-            function ()
-            {
-//                throw "Test.";
-            });
+    window.babylonProject.createVRScene = jest.fn ();
 
     window.babylonProject.gameLoop = jest.fn ();
 });
