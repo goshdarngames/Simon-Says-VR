@@ -27,9 +27,7 @@ MockBabylon = jest.fn (
 
 beforeEach ( ()=>
 {
-    window.babylonProject.gameState = jest.fn ();
-
-    window.babylonProject.gameState.StartState = jest.fn ();
+    window.babylonProject.StartState = jest.fn ();
 
     window.babylonProject.createVRScene = jest.fn ();
 
@@ -136,11 +134,11 @@ describe ( "window.babylonProject.pageLoaded" , () =>
 
         window.babylonProject.pageLoaded ( mock_doc, mock_babylon );
 
-        expect ( window.babylonProject.gameState.StartState )
+        expect ( window.babylonProject.StartState )
             .toHaveBeenCalledTimes ( 1 );
 
 
-        expect ( window.babylonProject.gameState.StartState )
+        expect ( window.babylonProject.StartState )
             .toHaveBeenCalledWith ( 10 );
     });
 
@@ -154,7 +152,7 @@ describe ( "window.babylonProject.pageLoaded" , () =>
         window.babylonProject.pageLoaded ( mock_doc, mock_babylon );
 
         expect ( window.babylonProject.currentGameState )
-            .toBeInstanceOf ( window.babylonProject.gameState.StartState );
+            .toBeInstanceOf ( window.babylonProject.StartState );
     });
 
     

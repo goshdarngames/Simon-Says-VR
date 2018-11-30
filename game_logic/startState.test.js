@@ -19,11 +19,11 @@ function get_mock_scene ()
  * TESTS
  ***************************************************************************/
 
-describe ( "window.babylonProject.gameState.startState", () =>
+describe ( "window.babylonProject.startState", () =>
 {
     test ( "is defined", () =>
     {
-        expect ( window.babylonProject.gameState.StartState )
+        expect ( window.babylonProject.StartState )
             .toBeDefined ();
     });
 
@@ -32,7 +32,7 @@ describe ( "window.babylonProject.gameState.startState", () =>
         let mock_scene = get_mock_scene();
 
         let startState = 
-            new window.babylonProject.gameState.StartState ( mock_scene );
+            new window.babylonProject.StartState ( mock_scene );
 
         expect ( startState.update ).toBeDefined ();
     });
@@ -41,7 +41,7 @@ describe ( "window.babylonProject.gameState.startState", () =>
     {
         expect (() =>
                 {
-                    new window.babylonProject.gameState.StartState ()
+                    new window.babylonProject.StartState ()
                 })
             .toThrow ();
     });
@@ -51,7 +51,7 @@ describe ( "window.babylonProject.gameState.startState", () =>
         let babylonScene = jest.fn ();
 
         let startState = 
-            new window.babylonProject.gameState.StartState ( babylonScene );
+            new window.babylonProject.StartState ( babylonScene );
 
         expect ( startState.babylonScene ).toBe ( babylonScene );
     });
@@ -62,11 +62,11 @@ describe ( "window.babylonProject.gameState.startState", () =>
         let mock_scene = get_mock_scene();
 
         let startState = 
-            new window.babylonProject.gameState.StartState ( mock_scene );
+            new window.babylonProject.StartState ( mock_scene );
 
         expect ( startState.update () )
             .toBeInstanceOf (
-                 window.babylonProject.gameState.StartState  );
+                 window.babylonProject.StartState  );
 
     });
 
@@ -76,7 +76,7 @@ describe ( "window.babylonProject.gameState.startState", () =>
         let mock_scene = get_mock_scene();
 
         let startState = 
-            new window.babylonProject.gameState.StartState ( mock_scene );
+            new window.babylonProject.StartState ( mock_scene );
         
         startState.update ();
         

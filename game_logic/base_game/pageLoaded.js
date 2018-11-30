@@ -34,7 +34,7 @@
                  engine );
 
         let startState = new window.babylonProject
-            .gameState.StartState( scene );
+            .StartState( scene );
 
         babylonProject.currentGameState = startState;
 

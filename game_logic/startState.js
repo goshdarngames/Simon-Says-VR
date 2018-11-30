@@ -1,7 +1,7 @@
-( function ( babylonProject, gameState, undefined )
+( function ( babylonProject,  undefined )
 {
 
-    gameState.StartState = function ( babylonScene )
+    babylonProject.StartState = function ( babylonScene )
     {
         if ( babylonScene == undefined )
         {
@@ -18,7 +18,4 @@
         };
     }; 
 
-} ( window.babylonProject = window.babylonProject || {},
-
-    window.babylonProject.gameState =  
-        window.babylonProject.gameState || {} ));
+} ( window.babylonProject = window.babylonProject || {}  ));
