@@ -7,15 +7,17 @@ directory.
 The single point of access from the HTML file that contains the canvas
 can be found in:
     
-     ./jQueryDomFunctions.js
+     ./base_game/jQueryDomFunctions.js
 
 It defines the document ready function which simply passes the external
 dependencies of the project to the page loaded function found in:
 
-    ./pageLoaded.js
+    ./base_game/pageLoaded.js
 
 The page loaded function performs some initialization and starts the game
-loop.
+loop with the initial state defined in:
+
+    ./startState.js
 
 Game Loop Finite State Machine
 ==============================
@@ -34,15 +36,13 @@ collisions, update the positions of all game objects and then return itself.
 If the player were to die the state would construct the Game Over state and
 return that.
 
-The game states are defined in:
-    
-    ./game_state/
+The initial state that the game enters into when the page is loaded can
+be found in:
+   
+    ./startScene.js
 
 The game loop is found in:
     
-    ./ gameLoop.js
+    ./base_game/gameLoop.js
 
-Note:  
-At present the game loop is controlled by babylon's runRenderLoop function
-and simply calls update on the current state.  It is planned to use a 
-more advanced main loop that will separate rendering from logic
+The game loop is called repeatedly using Babylon's runRenderLoop function.
