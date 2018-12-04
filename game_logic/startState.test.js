@@ -15,6 +15,11 @@ function get_mock_scene ()
     return new MockScene();
 }
 
+MockBabylon = jest.fn (
+    function ()
+    {
+    });
+
 /****************************************************************************
  * TESTS
  ***************************************************************************/
@@ -29,10 +34,12 @@ describe ( "window.babylonProject.startState", () =>
 
     test ( "instance has an update function", () =>
     {
+        let mock_babylon = new MockBabylon ();
         let mock_scene = get_mock_scene();
 
         let startState = 
-            new window.babylonProject.StartState ( mock_scene );
+            new window.babylonProject
+                .StartState ( mock_babylon, mock_scene );
 
         expect ( startState.update ).toBeDefined ();
     });
@@ -49,9 +56,11 @@ describe ( "window.babylonProject.startState", () =>
     test ( "startState stores babylonScene passed in constructor", () =>
     {
         let babylonScene = jest.fn ();
+        let mock_babylon = new MockBabylon ();
 
         let startState = 
-            new window.babylonProject.StartState ( babylonScene );
+            new window.babylonProject
+                .StartState (mock_babylon, babylonScene );
 
         expect ( startState.babylonScene ).toBe ( babylonScene );
     });
@@ -60,9 +69,10 @@ describe ( "window.babylonProject.startState", () =>
     test ( "instance.update() returns instance of StartState", () =>
     {
         let mock_scene = get_mock_scene();
+        let mock_babylon = new MockBabylon ();
 
         let startState = 
-            new window.babylonProject.StartState ( mock_scene );
+            new window.babylonProject.StartState (mock_babylon, mock_scene );
 
         expect ( startState.update () )
             .toBeInstanceOf (
@@ -74,9 +84,10 @@ describe ( "window.babylonProject.startState", () =>
             () =>
     {
         let mock_scene = get_mock_scene();
+        let mock_babylon = new MockBabylon ();
 
         let startState = 
-            new window.babylonProject.StartState ( mock_scene );
+            new window.babylonProject.StartState (mock_babylon,  mock_scene );
         
         startState.update ();
         

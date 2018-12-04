@@ -13,7 +13,7 @@
      * This object will be passed to the game loop as the first state
      * when the page is loaded.
      */
-    babylonProject.StartState = function ( babylonScene )
+    babylonProject.StartState = function ( babylon, babylonScene )
     {
         if ( babylonScene == undefined )
         {

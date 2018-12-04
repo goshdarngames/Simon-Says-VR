@@ -25,16 +25,14 @@
     {
         let canvas = documentRef.querySelector( "#renderCanvas" );
 
-        let engine = babylonProject.createBabylonEngine (
-                    babylonRef,
-                    canvas );
+        let engine = babylonProject
+            .createBabylonEngine ( babylonRef, canvas );
 
-        let scene =  babylonProject.createVRScene (
-                babylonRef,
-                 engine );
+        let scene =  babylonProject
+            .createVRScene ( babylonRef, engine );
 
         let startState = new window.babylonProject
-            .StartState( scene );
+            .StartState( babylonRef, scene );
 
         babylonProject.currentGameState = startState;
 

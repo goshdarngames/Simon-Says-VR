@@ -128,18 +128,31 @@ describe ( "window.babylonProject.pageLoaded" , () =>
 
         let mock_babylon = new MockBabylon ();
 
-        //The start state should have this scene as its parameter
-        window.babylonProject.createVRScene
-            .mockReturnValue ( 10 );
-
         window.babylonProject.pageLoaded ( mock_doc, mock_babylon );
 
         expect ( window.babylonProject.StartState )
             .toHaveBeenCalledTimes ( 1 );
+    });
 
+    test ( "passes return value from babylonProject.createVRScene "+
+           "and babylon lib reference " +
+           "to babylonProject.StartScene constructor", ()=>
+    {
+        let mock_doc = new MockDoc ();
+
+        let mock_babylon = new MockBabylon ();
+        
+        //capture reference to compare later
+        createVRSceneReturn = window.babylonProject.createVRScene ();
+
+        window.babylonProject.createVRScene
+            .mockReturnValueOnce ( createVRSceneReturn );
+
+        window.babylonProject.pageLoaded ( mock_doc, mock_babylon );
 
         expect ( window.babylonProject.StartState )
-            .toHaveBeenCalledWith ( 10 );
+            .toHaveBeenCalledWith (mock_babylon , createVRSceneReturn );
+
     });
 
     test ( "assigns window.babylonProject.gameState", () =>
