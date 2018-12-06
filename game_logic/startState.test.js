@@ -4,20 +4,34 @@ const startState = require ( "./startState" );
  * MOCK DATA
  ***************************************************************************/
 
-function get_mock_scene ()
-{
-    let MockScene = jest.fn (
+let MockScene = jest.fn (
+    function ()
+    {
+        this.render = jest.fn();
+    });
+
+let MockMeshBuilder = jest.fn (
+    function ()
+    {
+        this.CreateBox = jest.fn(
             function ()
             {
-                this.render = jest.fn();
+                return new MockBox ();
             });
+    });
 
-    return new MockScene();
-}
+let MockBox = jest.fn (
+    function ()
+    {
+        this.position = { x:0, y:0, z:0 };
+    });
 
 MockBabylon = jest.fn (
     function ()
     {
+  
+        this.MeshBuilder = new MockMeshBuilder ();      
+
     });
 
 /****************************************************************************
@@ -35,7 +49,7 @@ describe ( "window.babylonProject.startState", () =>
     test ( "instance has an update function", () =>
     {
         let mock_babylon = new MockBabylon ();
-        let mock_scene = get_mock_scene();
+        let mock_scene = new MockScene ();
 
         let startState = 
             new window.babylonProject
@@ -53,22 +67,9 @@ describe ( "window.babylonProject.startState", () =>
             .toThrow ();
     });
 
-    test ( "startState stores babylonScene passed in constructor", () =>
-    {
-        let babylonScene = jest.fn ();
-        let mock_babylon = new MockBabylon ();
-
-        let startState = 
-            new window.babylonProject
-                .StartState (mock_babylon, babylonScene );
-
-        expect ( startState.babylonScene ).toBe ( babylonScene );
-    });
-
-
     test ( "instance.update() returns instance of StartState", () =>
     {
-        let mock_scene = get_mock_scene();
+        let mock_scene = new MockScene ();
         let mock_babylon = new MockBabylon ();
 
         let startState = 
@@ -78,21 +79,6 @@ describe ( "window.babylonProject.startState", () =>
             .toBeInstanceOf (
                  window.babylonProject.StartState  );
 
-    });
-
-    test ( "startscene update calls render() on startscene.babylonScene",
-            () =>
-    {
-        let mock_scene = get_mock_scene();
-        let mock_babylon = new MockBabylon ();
-
-        let startState = 
-            new window.babylonProject.StartState (mock_babylon,  mock_scene );
-        
-        startState.update ();
-        
-        expect ( startState.babylonScene.render )
-            .toHaveBeenCalledTimes ( 1 );
     });
 
 });

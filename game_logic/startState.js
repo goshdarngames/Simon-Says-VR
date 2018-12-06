@@ -10,21 +10,29 @@
 ( function ( babylonProject,  undefined )
 {
     /**
-     * This object will be passed to the game loop as the first state
+     * StartState ( babylon, scene )
+     *
+     * Constructor function for the first state the game will enter into
      * when the page is loaded.
+     *
+     * The update function should return the next state - it should return
+     * 'this' if the state is not changing.
      */
-    babylonProject.StartState = function ( babylon, babylonScene )
+    babylonProject.StartState = function ( babylon, scene )
     {
-        if ( babylonScene == undefined )
+        if ( scene == undefined )
         {
             throw new Error ( "Scene argument is undefined" );
         }
 
-        this.babylonScene = babylonScene;
+        let box = babylon.MeshBuilder.CreateBox ( "box", {}, scene );
+
+        box.position.z = 1;
+        box.position.y = 3;
 
         this.update = function ()
         {
-            this.babylonScene.render ();
+            scene.render ();
 
             return this;
         };
