@@ -7,7 +7,7 @@
  * The StartState object should have an update function that returns the
  * next state.  
  ***************************************************************************/
-( function ( babylonProject,  undefined )
+( function ( babylonProject, simon_says,  undefined )
 {
     /**
      * StartState ( babylon, scene )
@@ -38,4 +38,5 @@
         };
     }; 
 
-} ( window.babylonProject = window.babylonProject || {}  ));
+} ( window.babylonProject = window.babylonProject || {},
+    window.simonSays = window.simonSays || {}  ));

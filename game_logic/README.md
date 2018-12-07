@@ -4,6 +4,9 @@ Game Logic
 The modules that control the behaviour of the game can be found in this
 directory.  
 
+The files specific to the game of Simon Says are found in:
+    ./simon_says/
+
 The single point of access from the HTML file that contains the canvas
 can be found in:
     
