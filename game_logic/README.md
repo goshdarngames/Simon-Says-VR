@@ -7,6 +7,13 @@ directory.
 The files specific to the game of Simon Says are found in:
     ./simon_says/
 
+These modules use the namespace 'window.simonSays'.
+
+Modules that are not specific to any game are found in:
+    ./base_game/
+
+These modules use the namespace 'window.babylonProject'.
+
 The single point of access from the HTML file that contains the canvas
 can be found in:
     
